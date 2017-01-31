@@ -1,0 +1,4 @@
+
+			dir="https://geocoder.cit.api.here.com/6.2/geocode.xml?"+
+			"app_id=EJiiwcESc8a3fX3YDAhK&app_code=lbdJ16arthEPwrA7nhmluA&searchtext='"
+			+searchstexts+"'";
