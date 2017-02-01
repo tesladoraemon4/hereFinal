@@ -187,7 +187,10 @@ angular.module('hereMapa', ['ngGeolocation'])
 
 		}
 		
+		$scope.anadirAgenda = function (elemento) {
 
+			sessionStorage.setItem("Agenda",elemento.value);
+		}
 
 
 
