@@ -154,7 +154,7 @@ angular.module('hereMapa', ['ngGeolocation'])
 })
 .component('mapaHere',{
 	templateUrl:'map/mapa.html',
-	controller:function (queryCoordinates) {
+	controller:function (search,$scope,$http) {
 
 		/*METODO PARA GENERAR UN MAPA Y GEOLOCALIZAR
 		navigator.geolocation.getCurrentPosition(mapaProvider.mapaHubicame,
@@ -163,9 +163,51 @@ angular.module('hereMapa', ['ngGeolocation'])
 		});
 		mapaProvider.lugares();
 		*/
-		queryCoordinates.getCordenadasLugares();
-		//search.cuadroBusqueda();
+		//queryCoordinates.getCordenadasLugares();
 
+		$scope.peticionEvt =function () {//sacar los datos despues de 2 segundos
+
+			setTimeout(function(){
+				console.log("funcionas");
+				peticiones($scope.searchText);
+			}, 100*2);
+
+
+
+		}
+
+
+
+
+		$scope.esEnter = function (e) {
+
+		  tecla = (document.all) ? e.keyCode : e.which;
+
+		  if (tecla==13) peticiones($scope.searchtext);
+
+		}
+		
+
+
+
+
+
+
+
+
+		var peticiones = function (searchtext) {
+			var url = "https://geocoder.cit.api.here.com/6.2/geocode.json?searchtext='"+searchtext+"'&Country=MEX&mapview=42.3902%2C-71.1293%3B42.3312%2C-71.0228&gen=8&app_id=EJiiwcESc8a3fX3YDAhK&app_code=lbdJ16arthEPwrA7nhmluA";
+			$http.get(url)
+			.then(function (data) {
+				//array de lugares que coinciden 
+				var response = data.data.Response.View;
+				$scope.lugares = (response.length==0)?response.Result:response[0].Result;
+			},function (error) {
+				$log.error("Error peticion");
+				$log.error(error);
+			});
+
+		}
 
 		
 

@@ -43,16 +43,6 @@ angular.module('hereMapa')
 
 
 
-		var control = new H.ui.Control();
-		H.ui.UI.addControl('hola',control);
-
-
-
-
-
-
-
-
 
 
 
@@ -68,39 +58,6 @@ angular.module('hereMapa')
 
 
 	}
-
-
-
-	search.crearInput = function (){
-		var input = document.createElement('input');
-		input.type="text";
-		
-		return input;
-	}
-
-
-
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	return search;
